@@ -1,0 +1,18 @@
+fos_user_security:
+  resource: "fosuser/security.xml"
+
+fos_user_profile:
+  resource: "fosuser/profile.xml"
+  prefix: /profile
+  defaults:
+    _controller: FrameworkBundle:Redirect:redirect
+    route: frontend_homepage
+    permanent: true # this is for 301
+
+fos_user_register:
+  resource: "fosuser/registration.xml"
+  prefix: /register
+
+fos_user_resetting:
+  resource: "fosuser/resetting.xml"
+  prefix: /forgot-password

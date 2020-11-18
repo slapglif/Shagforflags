@@ -1,0 +1,36 @@
+fos_user:
+  db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+  firewall_name: main
+  user_class: App\Entity\User
+
+  from_email:
+    address: "mail@shagforflags.com"
+    sender_name: "Shag For Flags"
+
+  profile:
+    form:
+      type: user_profile
+
+  registration:
+    confirmation:
+      from_email: # Use this node only if you don't want the global email address for the confirmation email
+        address: "mail@shagforflags.com"
+        sender_name: "Shag For Flags"
+      enabled: false # change to true for required email confirmation
+      template: UserBundle:Registration:email.txt.twig
+    form:
+      type: App\Form\Type\RegistrationFormType
+      name: user_registration_form
+      validation_groups: [ Registration, Default ]
+
+  resetting:
+    token_ttl: 86400
+    email:
+      from_email: # Use this node only if you don't want the global email address for the resetting email
+        address: "mail@shagforflags.com"
+        sender_name: "Shag For Flags"
+      template: 'emails\FOS\reset-pw.html.php'
+    form:
+      type: App\Form\Type\ResettingFormType
+      name: user_resetting_form
+      validation_groups: [ ResetPassword, Default ]
